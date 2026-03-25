@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>心理易｜轻心理陪伴 Agent 产品</title>
+    <meta
+      name="description"
+      content="心理易是一个面向职场压力、情感倾诉、焦虑陪伴场景的轻心理陪伴 Agent 产品，强调意图识别、信息缺口澄清、首轮体验闭环和 benchmark 验证。"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero card">
+        <div class="eyebrow">
+          <span>AI 产品项目展示</span>
+          <span>Mind Companion Agent</span>
+        </div>
+        <h1>心理易</h1>
+        <p class="subtitle">一个面向轻情绪困扰场景的 AI 陪伴产品原型</p>
+        <p class="lede">
+          项目聚焦职场压力、情感倾诉、焦虑陪伴 3 类高频轻咨询场景，目标不是替代专业诊疗，而是在用户最需要开口的时刻，提供低门槛、即时、不过界的情绪支持。
+        </p>
+        <div class="hero-actions">
+          <a href="https://github.com/Kudo330/xinliyi" target="_blank" rel="noreferrer">查看仓库</a>
+          <a href="#benchmark" class="ghost">查看评测结果</a>
+        </div>
+      </section>
+
+      <section class="grid two">
+        <article class="card">
+          <h2>产品定位</h2>
+          <ul>
+            <li>轻心理陪伴与即时情绪支持，而非专业诊疗替代</li>
+            <li>服务对象是有即时倾诉需求、但不愿意打扰熟人的用户</li>
+            <li>不做诊断、不做治疗承诺、不替用户做重大人生决策</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h2>核心场景</h2>
+          <ul>
+            <li>职场压力：任务压顶、绩效焦虑、职业犹豫</li>
+            <li>情感倾诉：委屈没说出口、关系拉扯、分手后反复</li>
+            <li>焦虑陪伴：心慌、睡前情绪波动、持续担心</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="card">
+        <h2>我主导的产品设计</h2>
+        <div class="grid three">
+          <div class="feature">
+            <h3>场景拆解</h3>
+            <p>把泛心理需求压缩到 3 个 MVP 场景，主动排除重诊疗、复杂评估和长期治疗型需求。</p>
+          </div>
+          <div class="feature">
+            <h3>对话策略</h3>
+            <p>设计意图识别、信息缺口澄清和本地策略优先的回复逻辑，把“会生成”变成“像产品”。</p>
+          </div>
+          <div class="feature">
+            <h3>体验闭环</h3>
+            <p>围绕首页信任建立、首轮欢迎语、1~2 轮价值感知，完成 MVP 核心价值闭环设计。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid two">
+        <article class="card">
+          <h2>体验设计</h2>
+          <ul>
+            <li>纸本手帐风格首页，降低工具感，强化“可以慢慢说”</li>
+            <li>伙伴角色区分：小白（治愈陪伴） / 小橘（轻快梳理）</li>
+            <li>抽卡与时光模式，提升停留感和陪伴感</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h2>风险边界</h2>
+          <ul>
+            <li>保留高风险识别，但不在聊天流中频繁插入强提醒</li>
+            <li>首页保留边界说明，避免制造额外心理负担</li>
+            <li>产品定位始终是陪伴，不是诊断和治疗</li>
+          </ul>
+        </article>
+      </section>
+
+      <section id="benchmark" class="card accent">
+        <h2>第二轮 Live Benchmark</h2>
+        <div class="metrics">
+          <div class="metric">
+            <span class="label">Total</span>
+            <strong>95.76 / 100</strong>
+          </div>
+          <div class="metric">
+            <span class="label">Business</span>
+            <strong>35.00 / 35</strong>
+          </div>
+          <div class="metric">
+            <span class="label">Model</span>
+            <strong>40.76 / 45</strong>
+          </div>
+          <div class="metric">
+            <span class="label">Engineering</span>
+            <strong>20.00 / 20</strong>
+          </div>
+        </div>
+        <div class="grid two compact">
+          <div>
+            <h3>关键指标</h3>
+            <ul>
+              <li>API success rate：1.0000</li>
+              <li>P95 latency：19 ms</li>
+              <li>High-risk miss rate：0.0000</li>
+              <li>Fallback count：1</li>
+            </ul>
+          </div>
+          <div>
+            <h3>人工复核</h3>
+            <ul>
+              <li>高风险样本人工复核：7 条</li>
+              <li>结果：7 pass / 0 fail</li>
+              <li>当前版本通过 release screening hard gates</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>项目材料</h2>
+        <div class="links">
+          <a href="https://github.com/Kudo330/xinliyi/blob/main/README.md" target="_blank" rel="noreferrer">README</a>
+          <a href="https://github.com/Kudo330/xinliyi/blob/main/docs/%E4%BA%A7%E5%93%81%E6%96%B9%E6%A1%88%E6%A6%82%E8%A7%88.md" target="_blank" rel="noreferrer">产品方案概览</a>
+          <a href="https://github.com/Kudo330/xinliyi/blob/main/docs/%E7%AB%9E%E5%93%81%E5%88%86%E6%9E%90.md" target="_blank" rel="noreferrer">竞品分析</a>
+          <a href="https://github.com/Kudo330/xinliyi/blob/main/docs/live_benchmark_report.md" target="_blank" rel="noreferrer">Live Benchmark</a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
