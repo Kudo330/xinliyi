@@ -1,71 +1,307 @@
-# 心理易
+# 心理易｜轻心理陪伴 Agent 产品
 
-一个面向轻情绪支持场景的 AI 心理陪伴 Web 应用，包含：
+一个面向轻情绪困扰场景的 AI 陪伴产品原型。项目聚焦职场压力、情感倾诉、焦虑陪伴 3 类高频轻咨询场景，目标不是替代专业诊疗，而是在用户最需要开口的时刻，提供低门槛、即时、不过界的情绪支持。
 
-1. Web 聊天页 `/chat`
-2. 微信消息接入 `/api/wechat`
-3. 运行面板 `/ops`
-4. 调试配置接口 `/api/debug-ai-config`
+这个 README 按产品视角展开，优先说明产品定位、核心设计和验证结果，而不是先堆技术名词。面试官可以直接从这里看出项目的产品主导能力。
 
-## 当前状态
+## 1. 产品定义
 
-1. `npm run build` 通过
-2. `npm run lint` 通过
-3. 首页、聊天页、运行面板可访问
-4. `/api/chat` 与 `/api/wechat` 共用同一套 AI 配置与基础风控逻辑
+### 产品定位
 
-## 技术栈
+`心理易` 是一个轻心理陪伴 Agent，服务对象是：
+
+1. 有即时倾诉需求，但不愿意打扰熟人的用户
+2. 处于压力、委屈、内耗、睡前低落等情绪状态下的用户
+3. 需要被接住、被理解，而不是立刻被分析或诊断的用户
+
+### 不做什么
+
+项目明确不把自己定义成心理咨询、心理测评或医疗诊断工具。
+
+边界非常明确：
+
+1. 不做诊断
+2. 不做治疗承诺
+3. 不替用户做重大人生决策
+4. 不把复杂精神健康场景包装成“AI 都能解决”
+
+## 2. 用户问题
+
+这个产品要解决的不是“用户没有地方聊天”，而是下面 3 类更具体的问题：
+
+1. 用户输入往往很模糊  
+   真实表达通常是“我最近很累”“我不知道为什么就是很烦”“我是不是哪里有问题”，系统需要先理解用户是在倾诉、求安慰，还是求建议。
+
+2. 通用模型会说话，但未必适合心理陪伴场景  
+   很多回复看起来礼貌，但要么空泛，要么说教，要么越界。
+
+3. 情绪场景对首轮体验极其敏感  
+   如果用户前 1 到 2 轮感受不到“被接住”，他基本不会继续聊。
+
+## 3. 核心场景
+
+项目将 MVP 聚焦在 3 类高频轻咨询场景：
+
+1. `职场压力`  
+   典型问题：任务压顶、绩效焦虑、职业犹豫、反复内耗
+
+2. `情感倾诉`  
+   典型问题：委屈没说出口、关系拉扯、被忽视、分手后情绪反复
+
+3. `焦虑陪伴`  
+   典型问题：心慌、脑子停不下来、睡前情绪波动、持续担心
+
+选择这 3 类场景的原因不是“它们热门”，而是它们同时满足：
+
+1. 高频
+2. 表达门槛低
+3. 适合即时对话承接
+4. 相比重诊疗场景，产品边界更清晰
+
+## 4. 产品主导的关键设计
+
+### 4.1 场景拆解
+
+项目不是从“接一个模型”开始，而是先做场景拆解：
+
+1. 把泛心理需求压缩到 3 个 MVP 场景
+2. 排除重度诊疗、复杂评估、长期治疗型需求
+3. 明确价值主张是“轻陪伴与即时情绪支持”
+
+### 4.2 对话策略
+
+核心设计不是简单问答，而是：
+
+1. `意图识别`
+   - 倾诉
+   - 求安慰
+   - 求建议
+
+2. `信息缺口澄清`
+   - 建议类输入如果上下文不足，先追问一个关键问题
+   - 避免直接输出空泛建议
+
+3. `本地策略优先`
+   - 高风险、建议类、短情绪表达优先走本地策略
+   - 复杂场景再调用模型
+
+这套设计的产品意义是：把“会生成回复”变成“更像一个可上线的陪伴产品”。
+
+### 4.3 首轮体验闭环
+
+MVP 的闭环不是增长闭环，而是核心价值闭环：
+
+`首页建立信任 -> 发起第一句表达 -> 前 1~2 轮获得被接住的感觉 -> 愿意继续说`
+
+为此，首页和聊天页重点做了：
+
+1. 低门槛入口设计
+2. 3 类场景示例引导
+3. 伙伴角色切换
+4. 首轮欢迎语区分
+5. 抽卡 / 时光等轻互动能力
+
+### 4.4 角色化陪伴
+
+为了让产品不是“一个通用 AI 套两张头像”，项目做了双角色区分：
+
+1. `小白`  
+   白色萨摩耶，偏安静、治愈、陪伴型
+
+2. `小橘`  
+   橘色金渐层，偏轻快、梳理、松弛型
+
+角色差异体现在：
+
+1. 首轮欢迎语
+2. 回复口吻
+3. 卡片文风
+4. 视觉形象
+
+## 5. 体验设计
+
+### 首页
+
+首页不是简单 landing page，而是承担了 3 个产品任务：
+
+1. 建立信任感
+2. 给出可进入的场景示例
+3. 引导用户迅速进入聊天页
+
+视觉上采用纸本手帐风格，弱化工具感，强化“可以慢慢说”的情绪氛围。
+
+### 聊天页
+
+聊天页重点做了 4 类体验设计：
+
+1. 伙伴选择
+2. 倾诉 / 抽卡 / 时光模式切换
+3. 真实图片头像替代卡通占位符
+4. 陪伴式消息气泡和纸本风格 UI
+
+### 轻互动
+
+项目保留了两个轻互动功能：
+
+1. `抽卡`  
+   点击后直接出卡，不再往输入框塞模板话术
+
+2. `时光`
+   点击后直接生成“上一周心情周报”，而不是自动输入一句提示词
+
+这两个能力的作用是提升停留感和陪伴感，而不是凑功能数。
+
+## 6. 风险控制与边界
+
+项目保留了风险识别，但处理方式遵循当前产品策略：
+
+1. 高风险表达进入风险路径
+2. 不在聊天流里频繁插入热线或强提醒
+3. 首页末尾保留简短边界说明
+
+当前策略更强调：
+
+1. 不制造额外心理负担
+2. 不在轻陪伴产品里把用户一步推向“你需要去看医生”
+
+这部分是产品边界选择，不是技术缺失。
+
+## 7. 评测设计
+
+项目不仅做了原型和页面，还补了产品级 benchmark。
+
+### Benchmark 设计
+
+评测分为三层：
+
+1. `Business`
+2. `Model`
+3. `Engineering`
+
+样本集覆盖：
+
+1. 职场压力 `60`
+2. 情感倾诉 `50`
+3. 焦虑陪伴 `50`
+4. 高风险求助 `25`
+5. 对抗输入 `15`
+
+总计 `200` 条种子样本，并配套：
+
+1. rubrics
+2. scoring template
+3. 聚合脚本
+4. 实时 benchmark 脚本
+
+### 第二轮真实 benchmark 结果
+
+本项目已直接通过真实 `/api/chat` 跑过第二轮 live benchmark。
+
+结果如下：
+
+1. `Total`: `95.76 / 100`
+2. `Business`: `35.00 / 35`
+3. `Model`: `40.76 / 45`
+4. `Engineering`: `20.00 / 20`
+5. `Hard Gates`: `TRUE`
+
+关键指标：
+
+1. `API success rate`: `1.0000`
+2. `P95 latency`: `19 ms`
+3. `High-risk miss rate`: `0.0000`
+4. `Safety violation rate`: `0.0000`
+5. `Fallback count`: `1`
+6. `Average latency`: `239 ms`
+
+参考文件：
+
+1. [C:\Users\HP\xinliuyi\docs\live_benchmark_report.md](C:\Users\HP\xinliuyi\docs\live_benchmark_report.md)
+2. [C:\Users\HP\xinliuyi\docs\live_benchmark_summary.csv](C:\Users\HP\xinliuyi\docs\live_benchmark_summary.csv)
+3. [C:\Users\HP\xinliuyi\docs\high_risk_manual_review.md](C:\Users\HP\xinliuyi\docs\high_risk_manual_review.md)
+4. [C:\Users\HP\xinliuyi\docs\产品方案概览.md](C:\Users\HP\xinliuyi\docs\产品方案概览.md)
+5. [C:\Users\HP\xinliuyi\docs\竞品分析.md](C:\Users\HP\xinliuyi\docs\竞品分析.md)
+
+### 高风险人工复核
+
+项目还补了一轮高风险人工复核：
+
+1. 复核样本：`7`
+2. 结果：`7 pass / 0 fail`
+
+## 8. 我在项目中的主导工作
+
+如果从 AI 产品经理视角看，这个项目体现的是下面几类能力：
+
+1. `产品定位`
+   - 明确边界：轻陪伴，而非专业诊疗
+
+2. `场景拆解`
+   - 将泛心理需求压缩到 3 个可验证场景
+
+3. `AI 能力产品化`
+   - 意图识别
+   - 信息缺口澄清
+   - fallback 策略
+   - 角色化文风
+
+4. `体验闭环设计`
+   - 首页信任建立
+   - 首轮欢迎语
+   - 前 1~2 轮价值感知
+
+5. `评测与验证`
+   - benchmark 框架
+   - live benchmark
+   - 人工复核
+
+这一点比“我做了一个聊天页面”更能说明产品主导能力。
+
+## 9. 技术实现
+
+技术栈不是项目亮点，但完整可运行：
 
 1. Next.js 14
 2. React 18
 3. TypeScript
 4. Tailwind CSS
+5. MiniMax / OpenRouter 双 provider 配置
 
-## 本地运行
+主要页面与接口：
+
+1. `/`
+2. `/chat`
+3. `/ops`
+4. `/api/chat`
+5. `/api/wechat`
+6. `/api/debug-ai-config`
+
+## 10. 本地运行
 
 1. 安装依赖
+
 ```bash
 npm install
 ```
 
 2. 复制环境变量
+
 ```bash
 copy .env.example .env.local
 ```
 
-3. 填写 `.env.local`
+3. 按实际 provider 填写 `.env.local`
 
-OpenRouter 示例：
-```env
-AI_PROVIDER=openrouter
-OPENROUTER_API_KEY=your-key
-OPENROUTER_BASE_URL=https://openrouter.ai/api/v1
-OPENROUTER_MODEL=openai/gpt-4o-mini
-NEXT_PUBLIC_APP_URL=http://localhost:3000
-```
+4. 启动
 
-MiniMax 示例：
-```env
-AI_PROVIDER=minimax
-MINIMAX_API_KEY=your-key
-MINIMAX_BASE_URL=https://api.minimaxi.com/anthropic
-MINIMAX_MODEL=MiniMax-M2.5
-NEXT_PUBLIC_APP_URL=http://localhost:3000
-```
-
-4. 启动本地应用
 ```bash
 npm run app:start
 ```
 
 5. 查看状态
+
 ```bash
 npm run app:status
-```
-
-6. 停止应用
-```bash
-npm run app:stop
 ```
 
 默认访问：
@@ -73,91 +309,15 @@ npm run app:stop
 1. [http://127.0.0.1:3000](http://127.0.0.1:3000)
 2. [http://127.0.0.1:3000/chat](http://127.0.0.1:3000/chat)
 3. [http://127.0.0.1:3000/ops](http://127.0.0.1:3000/ops)
-4. [http://127.0.0.1:3000/api/debug-ai-config](http://127.0.0.1:3000/api/debug-ai-config)
 
-## 环境变量说明
+## 11. 仓库说明
 
-推荐变量：
+提交仓库时不要提交：
 
-1. `AI_PROVIDER`
-2. `OPENROUTER_API_KEY`
-3. `OPENROUTER_BASE_URL`
-4. `OPENROUTER_MODEL`
-5. `MINIMAX_API_KEY`
-6. `MINIMAX_BASE_URL`
-7. `MINIMAX_MODEL`
-8. `NEXT_PUBLIC_APP_URL`
-9. `WECHAT_TOKEN`
-10. `WECHAT_APP_ID`
-11. `WECHAT_APP_SECRET`
-12. `WECHAT_ENCODING_AES_KEY`
+1. `.env.local`
+2. `.next/`
+3. `node_modules/`
+4. `logs/`
+5. `data/runtime-events.jsonl`
 
-兼容旧变量：
-
-1. `ANTHROPIC_API_KEY`
-2. `ANTHROPIC_BASE_URL`
-3. `AI_MODEL`
-
-## 调试与监控
-
-1. `/api/debug-ai-config`
-   - 查看当前运行进程实际生效的 provider、baseUrl、model
-2. `/ops`
-   - 查看发送率、继续率、fallback 触发率、风险命中率
-3. 运行日志
-   - `data/runtime-events.jsonl`
-
-## 项目结构
-
-```text
-src/
-  app/
-    api/chat/route.ts
-    api/wechat/route.ts
-    api/analytics/route.ts
-    api/debug-ai-config/route.ts
-    chat/page.tsx
-    ops/page.tsx
-    page.tsx
-  lib/
-    ai-client.ts
-    mental-support.ts
-    observability.ts
-    runtime-dashboard.ts
-scripts/
-  start-app.ps1
-  stop-app.ps1
-  status-app.ps1
-docs/
-  benchmark.md
-  rubrics.md
-  上线检查清单.md
-```
-
-## 部署
-
-### Vercel
-
-1. 导入仓库
-2. 在 Project Settings -> Environment Variables 中配置环境变量
-3. 确认 `AI_PROVIDER` 与对应 provider 的 key/baseUrl/model 已配置
-4. 部署后访问 `/api/debug-ai-config` 检查生效配置
-
-### 自托管
-
-```bash
-npm install
-npm run build
-npm run start
-```
-
-## 风险边界
-
-这是一个心理陪伴产品，不提供医疗诊断或治疗。
-
-上线前至少确认：
-
-1. 页面文案与边界说明准确
-2. 隐私政策与服务条款已补齐
-3. 日志中不泄露密钥
-4. 关键回复经过人工抽检
+项目已经通过 `.gitignore` 做了默认排除。
