@@ -1,0 +1,209 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --paper: #f8f3ed;
+  --paper-strong: #f4ece3;
+  --paper-shadow: rgba(102, 74, 57, 0.14);
+  --ink: #302724;
+  --ink-soft: #766760;
+  --line: rgba(188, 166, 154, 0.34);
+  --accent: #c98a8f;
+  --accent-soft: rgba(201, 138, 143, 0.16);
+  --accent-strong: #b96f76;
+  --tab: #f6efe7;
+}
+
+html {
+  min-height: 100%;
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.92), transparent 34%),
+    radial-gradient(circle at bottom right, rgba(226, 206, 191, 0.34), transparent 28%),
+    linear-gradient(180deg, #f5efe8 0%, #efe4d9 100%);
+}
+
+body {
+  min-height: 100vh;
+  color: var(--ink);
+  font-family: var(--font-sans), sans-serif;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.58), transparent 20%, transparent 80%, rgba(255, 255, 255, 0.42)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.4), transparent 26%, rgba(212, 191, 176, 0.12));
+}
+
+h1,
+h2,
+h3,
+h4,
+.font-display {
+  font-family: var(--font-serif), serif;
+  letter-spacing: -0.03em;
+}
+
+a,
+button {
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(168, 142, 130, 0.46);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(146, 118, 108, 0.72);
+}
+
+textarea {
+  field-sizing: content;
+}
+
+.notebook-shell {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(227, 213, 201, 0.92);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.75), rgba(248, 243, 237, 0.95)),
+    var(--paper);
+  box-shadow:
+    0 26px 70px var(--paper-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.notebook-shell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent 0, transparent calc(50% - 44px), rgba(180, 162, 151, 0.15) calc(50% - 8px), rgba(180, 162, 151, 0.15) calc(50% + 8px), transparent calc(50% + 44px), transparent 100%);
+  pointer-events: none;
+}
+
+.notebook-spine {
+  position: absolute;
+  top: 8%;
+  bottom: 8%;
+  left: 50%;
+  width: 88px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(234, 226, 219, 0), rgba(220, 210, 201, 0.32) 22%, rgba(250, 248, 244, 0.8) 50%, rgba(220, 210, 201, 0.32) 78%, rgba(234, 226, 219, 0));
+  filter: blur(0.1px);
+}
+
+.notebook-spine::before,
+.notebook-spine::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  width: 42px;
+  height: 12px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: linear-gradient(180deg, #fdfaf5, #b9ada4 55%, #fcfaf7);
+  box-shadow: 0 8px 18px rgba(82, 64, 55, 0.14);
+}
+
+.notebook-spine::before {
+  top: 18%;
+  box-shadow:
+    0 112px 0 0 rgba(0, 0, 0, 0),
+    0 224px 0 0 rgba(0, 0, 0, 0),
+    0 336px 0 0 rgba(0, 0, 0, 0);
+}
+
+.paper-lines {
+  background-image: linear-gradient(180deg, transparent 0, transparent 39px, var(--line) 40px);
+  background-size: 100% 40px;
+}
+
+.month-tab {
+  border: 1px solid rgba(227, 213, 201, 0.8);
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 12px 24px rgba(124, 97, 82, 0.08);
+}
+
+.soft-accent-card {
+  border: 1px solid rgba(201, 138, 143, 0.16);
+  background: linear-gradient(180deg, rgba(201, 138, 143, 0.16), rgba(255, 255, 255, 0.4));
+}
+
+.page-fade-up {
+  animation: fadeUp 600ms ease both;
+}
+
+.page-fade-up-delay {
+  animation: fadeUp 900ms ease both;
+}
+
+.type-line {
+  display: inline-block;
+  width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 1px solid rgba(177, 149, 135, 0.75);
+  animation:
+    typeLine 2.3s steps(28, end) forwards,
+    caretBlink 900ms step-end 3,
+    caretHide 0.01s linear 2.7s forwards;
+}
+
+.type-line-delay {
+  animation-delay: 0.65s, 0.65s, 3.35s;
+}
+
+.type-line-short {
+  max-width: 100%;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes typeLine {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes caretBlink {
+  0%, 49% {
+    border-color: rgba(177, 149, 135, 0.75);
+  }
+  50%, 100% {
+    border-color: transparent;
+  }
+}
+
+@keyframes caretHide {
+  to {
+    border-right-color: transparent;
+  }
+}
