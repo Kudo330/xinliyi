@@ -44,6 +44,23 @@ type OpsSnapshot = {
 };
 
 const LOG_PATH = path.join(process.cwd(), 'data', 'runtime-events.jsonl');
+const IS_VERCEL = process.env.VERCEL === '1';
+
+function emptySnapshot(): OpsSnapshot {
+  return {
+    totalEvents: 0,
+    webSessions: 0,
+    firstTurnSessions: 0,
+    secondTurnSessions: 0,
+    firstSendRate: 0,
+    secondTurnContinuationRate: 0,
+    fallbackRate: 0,
+    riskHitRate: 0,
+    webMessageCount: 0,
+    recentFailures: [],
+    dailyStats: [],
+  };
+}
 
 function safeDivide(numerator: number, denominator: number): number {
   if (denominator <= 0) return 0;
@@ -65,24 +82,16 @@ function getMetadataNumber(metadata: Record<string, unknown> | undefined, key: s
 }
 
 export async function getRuntimeDashboardSnapshot(): Promise<OpsSnapshot> {
+  if (IS_VERCEL) {
+    return emptySnapshot();
+  }
+
   let content = '';
 
   try {
     content = await readFile(LOG_PATH, 'utf8');
   } catch {
-    return {
-      totalEvents: 0,
-      webSessions: 0,
-      firstTurnSessions: 0,
-      secondTurnSessions: 0,
-      firstSendRate: 0,
-      secondTurnContinuationRate: 0,
-      fallbackRate: 0,
-      riskHitRate: 0,
-      webMessageCount: 0,
-      recentFailures: [],
-      dailyStats: [],
-    };
+    return emptySnapshot();
   }
 
   const events = content

@@ -23,6 +23,9 @@ export type RuntimeEvent = {
 
 const LOG_DIR = path.join(process.cwd(), 'data');
 const LOG_FILE = path.join(LOG_DIR, 'runtime-events.jsonl');
+const RUNTIME_LOG_MODE = process.env.RUNTIME_LOG_MODE || '';
+const IS_VERCEL = process.env.VERCEL === '1';
+const SHOULD_WRITE_LOCAL_LOG = !IS_VERCEL && RUNTIME_LOG_MODE !== 'off';
 
 export function buildMessagePreview(message: string, maxLength = 80): string {
   return message.replace(/\s+/g, ' ').trim().slice(0, maxLength);
@@ -33,6 +36,11 @@ export async function logRuntimeEvent(entry: RuntimeEvent): Promise<void> {
     ...entry,
     timestamp: entry.timestamp || new Date().toISOString(),
   };
+
+  if (!SHOULD_WRITE_LOCAL_LOG) {
+    console.log('Runtime Event:', JSON.stringify(payload));
+    return;
+  }
 
   try {
     await mkdir(LOG_DIR, { recursive: true });
