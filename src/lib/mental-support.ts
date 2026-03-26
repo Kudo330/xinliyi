@@ -250,20 +250,34 @@ export function buildLocalSupportReply({ message, history = [], companion = null
   return buildEmotionSupport(emotion, companion);
 }
 
+function hasEnoughAdviceContext(message: string, history: ChatMessage[] = []): boolean {
+  const text = message.trim();
+  const userTurns = history.filter((item) => item.role === 'user');
+  const combined = [...userTurns.slice(-2).map((item) => item.content), text].join(' ');
+
+  if (combined.length >= 28) {
+    return true;
+  }
+
+  const detailSignals = ['因为', '但是', '所以', '最近', '一直', '总是', '不知道', '后悔', '关系', '工作'];
+  const hitCount = detailSignals.filter((signal) => combined.includes(signal)).length;
+
+  return hitCount >= 2;
+}
+
 export function shouldPreferLocalReply(message: string, history: ChatMessage[] = []): boolean {
   const risk = assessRiskSignals(message, history);
   const intent = detectIntent(message);
-  const text = message.trim();
 
   if (risk.detected) {
     return true;
   }
 
   if (intent === 'advice') {
-    return true;
+    return !hasEnoughAdviceContext(message, history);
   }
 
-  return text.length <= 36 && history.length <= 2;
+  return false;
 }
 
 export function buildFallbackReply(message: string, history: ChatMessage[] = [], companion: CompanionType = null): string {
