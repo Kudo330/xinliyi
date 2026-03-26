@@ -52,87 +52,87 @@ const COMPANION_WELCOME_MESSAGES: Record<Exclude<Companion, null>, string> = {
 const MAX_CONTEXT_MESSAGES = 12;
 const CARD_DECK = [
   {
-    title: '??',
-    keyword: '?????',
-    mantra: '???????????????????????',
-    action: '?????????????????????',
+    title: '向晴',
+    keyword: '今日宜从容',
+    mantra: '今天适合先顾好节奏，再谈结果。慢一点，不会耽误你往前走。',
+    action: '把今天最重要的一件事单独留出来，先做完它。',
     accent: 'linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(245,236,228,0.98) 100%)',
   },
   {
-    title: '??',
-    keyword: '?????',
-    mantra: '??????????????????????????',
-    action: '???????????????',
+    title: '小满',
+    keyword: '今日宜留白',
+    mantra: '事情不用排得太满，给自己留一点空，当天色都会松下来。',
+    action: '主动空出十分钟，什么都不安排。',
     accent: 'linear-gradient(180deg, rgba(255,247,236,0.98) 0%, rgba(248,227,205,0.98) 100%)',
   },
   {
-    title: '??',
-    keyword: '?????',
-    mantra: '?????????????????????????????',
-    action: '?????????????????',
+    title: '有风',
+    keyword: '今日宜出门',
+    mantra: '今天适合动一动，哪怕只是换个地方坐一会儿，想法都会顺一些。',
+    action: '去窗边站两分钟，或者下楼走一小圈。',
     accent: 'linear-gradient(180deg, rgba(255,250,247,0.98) 0%, rgba(239,225,218,0.98) 100%)',
   },
   {
-    title: '??',
-    keyword: '?????',
-    mantra: '???????????????????????????????',
-    action: '??????????????????',
+    title: '照面',
+    keyword: '今日宜开口',
+    mantra: '有些话不必准备得太完整，说出来的那一刻，事情就已经开始松动了。',
+    action: '把你最想说的一句先发出去，不用润色。',
     accent: 'linear-gradient(180deg, rgba(254,247,242,0.98) 0%, rgba(242,232,225,0.98) 100%)',
   },
   {
-    title: '??',
-    keyword: '?????',
-    mantra: '??????????????????????????',
-    action: '???????????????',
+    title: '缓行',
+    keyword: '今日宜减速',
+    mantra: '今天不是比快的时候。把步子放稳，比逞一时之快更划算。',
+    action: '把待办里最赶的那件事拆成两步。',
     accent: 'linear-gradient(180deg, rgba(252,247,244,0.98) 0%, rgba(239,231,226,0.98) 100%)',
   },
   {
-    title: '??',
-    keyword: '??????',
-    mantra: '???????????????????????????????',
-    action: '?????????????',
+    title: '见喜',
+    keyword: '今日宜记好事',
+    mantra: '今天有小顺利的话，别让它轻轻过去。记下来，它会变成后面的底气。',
+    action: '写下一件今天还不错的小事。',
     accent: 'linear-gradient(180deg, rgba(255,249,244,0.98) 0%, rgba(242,234,226,0.98) 100%)',
   },
   {
-    title: '??',
-    keyword: '?????',
-    mantra: '????????????????????????????',
-    action: '????????????????',
+    title: '新枝',
+    keyword: '今日宜试试',
+    mantra: '今天适合做一点新的尝试，不用大，能让你觉得有意思就够了。',
+    action: '选一件平时不会做的小事，试一次。',
     accent: 'linear-gradient(180deg, rgba(254,248,242,0.98) 0%, rgba(244,233,224,0.98) 100%)',
   },
   {
-    title: '??',
-    keyword: '?????',
-    mantra: '?????????????????????????????',
-    action: '???????????????????',
+    title: '安坐',
+    keyword: '今日宜稳住',
+    mantra: '今天不必四处比较。把自己的位置坐稳，很多杂音自然会退下去。',
+    action: '关掉一个会分心的窗口，先专心二十分钟。',
     accent: 'linear-gradient(180deg, rgba(255,246,238,0.98) 0%, rgba(247,230,214,0.98) 100%)',
   },
   {
-    title: '??',
-    keyword: '?????',
-    mantra: '?????????????????????????????',
-    action: '????????????',
+    title: '顺水',
+    keyword: '今日宜借力',
+    mantra: '有些事不必硬拽着往前走，顺着手边已有的条件做，反而更省力。',
+    action: '先做最容易启动的那一件。',
     accent: 'linear-gradient(180deg, rgba(252,246,241,0.98) 0%, rgba(238,229,220,0.98) 100%)',
   },
   {
-    title: '??',
-    keyword: '?????',
-    mantra: '?????????????????????????',
-    action: '????????????????????',
+    title: '留灯',
+    keyword: '今日宜收尾',
+    mantra: '今天适合把尾巴收一收，不求漂亮，只求心里干净一点。',
+    action: '睡前把桌面清一下，或者关掉不再看的页面。',
     accent: 'linear-gradient(180deg, rgba(255,248,245,0.98) 0%, rgba(241,230,223,0.98) 100%)',
   },
   {
-    title: '??',
-    keyword: '?????',
-    mantra: '??????????????????????????????',
-    action: '?????????????',
+    title: '得闲',
+    keyword: '今日宜轻松',
+    mantra: '有空的时候别急着再塞事情进去。让自己松一会儿，也算正经安排。',
+    action: '留一段不被打断的空白时间。',
     accent: 'linear-gradient(180deg, rgba(250,247,242,0.98) 0%, rgba(235,229,220,0.98) 100%)',
   },
   {
-    title: '??',
-    keyword: '?????',
-    mantra: '????????????????????????????',
-    action: '????????????????',
+    title: '开阔',
+    keyword: '今日宜抬头',
+    mantra: '今天别总盯着眼前那一点。视野放开些，很多事就没那么卡了。',
+    action: '停下来抬头看看远处，再回来继续。',
     accent: 'linear-gradient(180deg, rgba(253,247,243,0.98) 0%, rgba(241,232,226,0.98) 100%)',
   },
 ];
@@ -657,7 +657,7 @@ export default function ChatPage() {
                   >
                     <div className="mb-4 flex items-start justify-between gap-3">
                       <div>
-                        <div className="text-[11px] uppercase tracking-[0.28em] text-[#c18b90]">Healing Card</div>
+                        <div className="text-[11px] uppercase tracking-[0.28em] text-[#c18b90]">Lucky Note</div>
                         <h3 className="mt-2 font-display text-[30px] leading-none text-[#2f2623]">{message.card.title}</h3>
                       </div>
                       <div className="rounded-full border border-[rgba(201,138,143,0.26)] bg-[rgba(255,255,255,0.52)] px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-[#9e7e73]">
@@ -666,11 +666,11 @@ export default function ChatPage() {
                     </div>
                     <div className="space-y-4">
                       <div className="rounded-[22px] border border-[rgba(219,201,191,0.52)] bg-[rgba(255,255,255,0.54)] px-4 py-4">
-                        <div className="text-[11px] uppercase tracking-[0.2em] text-[#b58b84]">这一句留给你</div>
+                        <div className="text-[11px] uppercase tracking-[0.2em] text-[#b58b84]">今日签语</div>
                         <p className="mt-2 text-[14px] leading-7 text-[#5a4a44]">{message.card.mantra}</p>
                       </div>
                       <div className="rounded-[22px] border border-[rgba(219,201,191,0.52)] bg-[rgba(255,255,255,0.4)] px-4 py-4">
-                        <div className="text-[11px] uppercase tracking-[0.2em] text-[#b58b84]">你现在可以试试</div>
+                        <div className="text-[11px] uppercase tracking-[0.2em] text-[#b58b84]">顺手做做</div>
                         <p className="mt-2 text-[14px] leading-7 text-[#695750]">{message.card.action}</p>
                       </div>
                     </div>
